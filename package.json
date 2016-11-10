@@ -6,7 +6,7 @@
   "repository": "git@github.com:Shopify/js-uploader.git",
   "scripts": {
     "lint": "eslint index.js",
-    "test": "testem"
+    "test": "mocha test/index.js --ui tdd"
   },
   "author": "Shopify Inc.",
   "license": "MIT",
