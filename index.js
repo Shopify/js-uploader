@@ -83,6 +83,7 @@ Uploader.prototype.deployStaticFile = function(filePath, destination) {
   }).promise().then((data) => {
     console.info('Uploaded "' + filePath + '" to S3 as "' +  + '"');
   }, (error) => {
+    console.error(error);
     if(error) {
       throw new Error('Error uploading ' + filePath, error);
     }
