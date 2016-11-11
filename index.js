@@ -77,9 +77,9 @@ Uploader.prototype.deployStaticFiles = function () {
 
 Uploader.prototype.deployStaticFile = function(filePath, destination) {
   return this.config.s3.putObject({
-    body: fs.readFileSync(filePath),
-    key: destination,
-    contentType: getContentType(filePath),
+    Body: fs.readFileSync(filePath),
+    Key: destination,
+    ContentType: getContentType(filePath),
   }).promise().then((data) => {
     console.info('Uploaded "' + filePath + '" to S3 as "' +  + '"');
   }, (error) => {
