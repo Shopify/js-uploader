@@ -81,11 +81,11 @@ Uploader.prototype.deployStaticFile = function(filePath, destination) {
     Key: destination,
     ContentType: getContentType(filePath),
   }).promise().then((data) => {
-    console.info('Uploaded "' + filePath + '" to S3 as "' +  + '"');
+    console.info(`Uploaded ${filePath} to S3 as ${destination}`);
   }, (error) => {
     console.error(error);
     if(error) {
-      throw new Error('Error uploading ' + filePath, error);
+      throw new Error(`Error uploading ${filePath}`);
     }
   });
 }
@@ -115,9 +115,7 @@ Uploader.prototype.purgeStaticFile = function(assetUrl, headers) {
 }
 
 Uploader.prototype.npmPublish = function () {
-  return run('npm install').then((stdout, stderr) => {
-    return run ('npm publish');
-  });
+  return run ('npm publish');
 }
 
 module.exports = Uploader;
