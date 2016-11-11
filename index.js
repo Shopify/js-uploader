@@ -61,16 +61,16 @@ Uploader.prototype.deployStaticFiles = function () {
     const contents = fs.readFileSync(filePath);
 
     if (this.config.version) {
-      uploadPaths.push(this.config.destination + '/' + this.config.version + '/' + basename);
+      uploadPaths.push(path.join(this.config.destination, this.config.version, basename));
       if (this.config.latest) {
-        uploadPaths.push(this.config.destination + '/latest/' + basename);
+        uploadPaths.push(path.join(this.config.destination, 'latest', basename));
       }
     } else {
-      uploadPaths.push(this.config.destination + '/' + basename);
+      uploadPaths.push(path.join(this.config.destination, basename));
     }
 
     return Promise.all(uploadPaths.map((uploadPath) => {
-      return this.deployStaticFile(dir + '/' + basename, uploadPath);
+      return this.deployStaticFile(path.join(dir, basename), uploadPath);
     }));
   }));
 }
@@ -116,9 +116,6 @@ Uploader.prototype.purgeStaticFile = function(assetUrl, headers) {
 Uploader.prototype.npmPublish = function () {
   return run('npm install').then((stdout, stderr) => {
     return run ('npm publish');
-  }).catch((err) => {
-    console.error(err);
-    return false;
   });
 }
 
