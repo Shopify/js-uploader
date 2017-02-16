@@ -118,4 +118,7 @@ Uploader.prototype.npmPublish = function () {
   return run ('npm publish');
 }
 
+Uploader.prototype.yarnPublish = function () {
+  return run ('yarn publish');
+}
 module.exports = Uploader;
